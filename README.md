@@ -1,10 +1,14 @@
-# mysql_a_sqlserver
 # 🚀 Nombre del Proyecto
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
-![status](https://img.shields.io/badge/status-en%20desarrollo-red)
+![status](https://img.shields.io/badge/status-completo-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-yellow)
-![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
+![contributions](https://img.shields.io/badge/contributions-welcome-blue)
+
+---
+
+> [!WARNING]
+> Este proyecto está marcado como **completo**, pero podrían agregarse nuevas funcionalidades o mejoras en futuras versiones. ¡Mantenete atento a las actualizaciones!
 
 ---
 
@@ -32,7 +36,7 @@ git clone https://github.com/tu-usuario/tu-repositorio.git
 # Ingresar al directorio
 cd tu-repositorio
 
-# Instalar dependencias (ejemplo en Node)
+# Instalar dependencias
 npm install
 
 # Ejecutar el proyecto
