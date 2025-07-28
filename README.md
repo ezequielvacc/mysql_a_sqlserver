@@ -3,7 +3,6 @@
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
 ![status](https://img.shields.io/badge/status-completo-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-yellow)
-![contributions](https://img.shields.io/badge/contributions-welcome-blue)
 
 ---
 
@@ -42,4 +41,4 @@ Antes de ejecutar el script, es necesario mover la carpeta `datos` a la ubicaciÃ
 ### âœ… 1. Clonar o descargar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repositorio.git
+git clone https://github.com/ezequielvacc/mysql_a_sqlserver.git
