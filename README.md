@@ -1,4 +1,4 @@
-# 🚀 Nombre del Proyecto
+# 🚀 Trabajo Práctico 1 — Puntos 1 al 4
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
 ![status](https://img.shields.io/badge/status-completo-brightgreen)
@@ -8,49 +8,38 @@
 ---
 
 > [!WARNING]
-> Este proyecto está marcado como **completo**, pero podrían agregarse nuevas funcionalidades o mejoras en futuras versiones. ¡Mantenete atento a las actualizaciones!
+> Este proyecto está marcado como **completo**, pero podrían agregarse nuevas funcionalidades o mejoras en futuras versiones.  
+> ¡Mantenete atento a las actualizaciones!
 
 ---
+
 > [!NOTE]
-> Esto es una nota o información adicional.
+> Este repositorio contiene la resolución de los puntos 1 al 4 del archivo PDF titulado **Trabajo Práctico 1**.  
+> Asegurate de seguir los pasos correctamente antes de ejecutar el archivo SQL.
+
+---
 
 > [!TIP]
-> Esto es un consejo o tip útil.
+> Podés mover la carpeta `datos` al disco `C:` manualmente o utilizando comandos desde la terminal (CMD).
 
-> [!WARNING]
-> Esto es una advertencia importante.
+---
 
 > [!IMPORTANT]
-> Esto es un mensaje importante.
+> El script `uno.sql` busca archivos en `C:\datos\`.  
+> Si no está correctamente ubicada, el script fallará al ejecutarse.
 
-> [!CAUTION]
-> Esto es una precaución que hay que tener en cuenta.
+---
+
 ## 📝 Descripción
 
-Este proyecto tiene como objetivo resolver [describir problema o propósito], utilizando tecnologías modernas y buenas prácticas de desarrollo.
+Este proyecto contiene un archivo llamado `uno.sql` que resuelve los puntos del 1 al 4 del PDF **Trabajo Práctico 1**.  
+Antes de ejecutar el script, es necesario mover la carpeta `datos` a la ubicación correcta.
 
 ---
 
-## 📦 Tecnologías utilizadas
+## 🛠️ Pasos para ejecutar correctamente
 
-- ⚙️ Lenguaje: `Python` / `Node.js` / `SQL Server`
-- 🧰 Frameworks/Librerías: `Express`, `Flask`, `React`, etc.
-- 🗄️ Base de datos: `MongoDB`, `SQLite`, `MySQL`, `SQL Server`
-- 🧪 Testing: `Jest`, `PyTest`
-
----
-
-## 🛠️ Instalación
+### ✅ 1. Clonar o descargar el repositorio
 
 ```bash
-# Clonar el repositorio
 git clone https://github.com/tu-usuario/tu-repositorio.git
-
-# Ingresar al directorio
-cd tu-repositorio
-
-# Instalar dependencias
-npm install
-
-# Ejecutar el proyecto
-npm start
