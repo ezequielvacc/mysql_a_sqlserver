@@ -29,6 +29,7 @@ O
 si tiene git instalado 
 ```bash
 git clone https://github.com/ezequielvacc/mysql_a_sqlserver.git
+```
 > [!TIP]
 > Podés mover la carpeta `datos` al disco `C:` manualmente o utilizando comandos desde la terminal (CMD).
 > Comando para CMD 
@@ -50,6 +51,7 @@ if exist "%ORIGEN%" (
 )
 
 pause
+```
 ---
 > Manual
 **Instrucciones para preparar los archivos CSV:**
