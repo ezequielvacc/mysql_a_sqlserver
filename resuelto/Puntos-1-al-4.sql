@@ -1,3 +1,235 @@
+-- ========================================
+-- 1. Crear base de datos
+-- ========================================
+CREATE DATABASE Empleados;
+GO
+
+USE Empleados;
+GO
+
+-- ========================================
+-- 2. Tabla empleados
+-- ========================================
+CREATE TABLE empleados
+(
+    id_emp INT NOT NULL PRIMARY KEY,
+    fecha_nacimiento DATE NOT NULL,
+    nombre VARCHAR(14) NOT NULL,
+    apellido VARCHAR(16) NOT NULL,
+    genero CHAR(1) NOT NULL CHECK (genero IN ('M','F')),
+    fecha_alta DATE NOT NULL
+);
+GO
+
+-- ========================================
+-- 3. Tabla departamentos
+-- ========================================
+CREATE TABLE departamentos
+(
+    id_dept CHAR(4) NOT NULL PRIMARY KEY,
+    nombre_dept VARCHAR(40) NOT NULL UNIQUE
+);
+GO
+
+-- ========================================
+-- 4. Tabla dept_emp (empleado en departamento)
+-- ========================================
+CREATE TABLE dept_emp
+(
+    id_emp INT NOT NULL,
+    id_dept CHAR(4) NOT NULL,
+    fecha_desde DATE NOT NULL,
+    fecha_hasta DATE NOT NULL,
+    PRIMARY KEY (id_emp, id_dept, fecha_desde),
+    FOREIGN KEY (id_emp) REFERENCES empleados(id_emp),
+    FOREIGN KEY (id_dept) REFERENCES departamentos(id_dept)
+);
+GO
+
+-- ========================================
+-- 5. Tabla dept_respo (responsables por departamento)
+-- ========================================
+CREATE TABLE dept_respo
+(
+    id_emp INT NOT NULL,
+    id_dept CHAR(4) NOT NULL,
+    fecha_desde DATE NOT NULL,
+    fecha_hasta DATE NOT NULL,
+    PRIMARY KEY (id_emp, id_dept, fecha_desde),
+    FOREIGN KEY (id_emp) REFERENCES empleados(id_emp),
+    FOREIGN KEY (id_dept) REFERENCES departamentos(id_dept)
+);
+GO
+
+-- ========================================
+-- 6. Tabla puestos (historial de cargos en texto)
+-- ========================================
+CREATE TABLE puestos
+(
+    id_emp INT NOT NULL,
+    puesto VARCHAR(50) NOT NULL,
+    fecha_desde DATE NOT NULL,
+    fecha_hasta DATE NULL,
+    PRIMARY KEY (id_emp, puesto, fecha_desde),
+    FOREIGN KEY (id_emp) REFERENCES empleados(id_emp)
+);
+GO
+
+-- ========================================
+-- 7. Tabla sueldos (historial)
+-- ========================================
+CREATE TABLE sueldos
+(
+    id_emp INT NOT NULL,
+    sueldo INT NOT NULL,
+    fecha_desde DATE NOT NULL,
+    fecha_hasta DATE NOT NULL,
+    PRIMARY KEY (id_emp, fecha_desde),
+    FOREIGN KEY (id_emp) REFERENCES empleados(id_emp)
+);
+GO
+
+
+-- ========================================
+-- 8. Carga de departamentos (archivo 01)
+-- ========================================
+INSERT INTO departamentos
+VALUES
+    ('d001', 'Marketing'),
+    ('d002', 'Finanzas'),
+    ('d003', 'Recursos Humanos'),
+    ('d004', 'Produccion'),
+    ('d005', 'Desarrollo'),
+    ('d006', 'Gestion de Calidad'),
+    ('d007', 'Ventas'),
+    ('d008', 'Investigacion'),
+    ('d009', 'Atencion a Clientes');
+GO
+-- ========================================
+-- 9. Carga con BULK INSERT desde datos_emp.csv (archivo 02)
+-- ========================================
+use Empleados;
+BULK INSERT empleados
+FROM 'C:\datos\datos_emp.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 1,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    CODEPAGE = '65001',  -- UTF-8
+    TABLOCK
+);
+GO
+-- ========================================
+-- 10. Carga con BULK INSERT desde datos_dept_emp.csv (archivo 03)
+-- ========================================
+use Empleados;
+BULK INSERT dept_emp
+FROM 'C:\datos\datos_dept_emp.csv'
+WITH (
+   FORMAT = 'CSV',
+    FIRSTROW = 1,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    CODEPAGE = '65001',  -- UTF-8
+    TABLOCK
+);
+GO
+-- ========================================
+-- 11. Carga de dept_respo (archivo 04)
+-- ======================================== 
+use Empleados;
+INSERT INTO dept_respo
+VALUES
+    (110022, 'd001', '1985-01-01', '1991-10-01'),
+    (110039, 'd001', '1991-10-01', '9999-01-01'),
+    (110085, 'd002', '1985-01-01', '1989-12-17'),
+    (110114, 'd002', '1989-12-17', '9999-01-01'),
+    (110183, 'd003', '1985-01-01', '1992-03-21'),
+    (110228, 'd003', '1992-03-21', '9999-01-01'),
+    (110303, 'd004', '1985-01-01', '1988-09-09'),
+    (110344, 'd004', '1988-09-09', '1992-08-02'),
+    (110386, 'd004', '1992-08-02', '1996-08-30'),
+    (110420, 'd004', '1996-08-30', '9999-01-01'),
+    (110511, 'd005', '1985-01-01', '1992-04-25'),
+    (110567, 'd005', '1992-04-25', '9999-01-01'),
+    (110725, 'd006', '1985-01-01', '1989-05-06'),
+    (110765, 'd006', '1989-05-06', '1991-09-12'),
+    (110800, 'd006', '1991-09-12', '1994-06-28'),
+    (110854, 'd006', '1994-06-28', '9999-01-01'),
+    (111035, 'd007', '1985-01-01', '1991-03-07'),
+    (111133, 'd007', '1991-03-07', '9999-01-01'),
+    (111400, 'd008', '1985-01-01', '1991-04-08'),
+    (111534, 'd008', '1991-04-08', '9999-01-01'),
+    (111692, 'd009', '1985-01-01', '1988-10-17'),
+    (111784, 'd009', '1988-10-17', '1992-09-08'),
+    (111877, 'd009', '1992-09-08', '1996-01-03'),
+    (111939, 'd009', '1996-01-03', '9999-01-01');
+GO
+-- ========================================
+-- 12. Carga con BULK INSERT desde datos_puestos.csv(archivo 05)
+-- ========================================
+use Empleados;
+BULK INSERT puestos
+FROM 'C:\datos\datos_puestos.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 1,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    CODEPAGE = '65001',  -- UTF-8
+    TABLOCK
+);
+GO
+
+-- ========================================
+-- 13. Carga con BULK INSERT desde datos_sueldos_1.csv (archivo 06)
+-- ========================================                         
+use Empleados;
+BULK INSERT sueldos
+FROM 'C:\datos\datos_sueldos_1.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 1,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    CODEPAGE = '65001',  -- UTF-8
+    TABLOCK
+);
+GO
+-- ========================================
+-- 14. Carga con BULK INSERT desde datos_sueldos_2.csv (archivo 07)
+-- ========================================
+use Empleados;
+BULK INSERT sueldos
+FROM 'C:\datos\datos_sueldos_2.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 1,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    CODEPAGE = '65001',  -- UTF-8
+    TABLOCK
+);  
+GO
+-- ========================================
+-- 15. Carga de sueldos (archivo 08)
+-- ========================================
+USE Empleados;
+BULK INSERT sueldos
+FROM 'C:\datos\datos_sueldos_3.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 1,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    CODEPAGE = '65001',  -- UTF-8
+    TABLOCK
+);
+GO
+-- ========================================
+-- 16. Tabla valores_encontrados (para test)
+-- ========================================
 USE Empleados;
 GO
 
@@ -299,3 +531,64 @@ UNION ALL
     SELECT 'Tiempo', CAST(DATEDIFF(MILLISECOND, @tiempoini, SYSDATETIME()) AS VARCHAR(50))
 UNION ALL
     SELECT 'UUID' AS Resumen, CAST(NEWID() AS VARCHAR(36)) AS Resultado
+GO
+
+-- ========================================
+-- 17. Crear tabla puesto_descr
+-- ========================================
+CREATE TABLE puesto_descr
+(
+    id_puesto SMALLINT NOT NULL PRIMARY KEY,
+    descripcion_en VARCHAR(50) NOT NULL UNIQUE,
+    descripcion_es VARCHAR(50) NOT NULL
+);
+GO
+-- ========================================
+-- 18. Insertar descripciones de puestos (traducciones)
+-- ========================================
+INSERT INTO puesto_descr
+    (id_puesto, descripcion_en, descripcion_es)
+VALUES
+    (1, 'Assistant Engineer', 'Ingeniero Asistente'),
+    (2, 'Engineer', 'Ingeniero'),
+    (3, 'Manager', 'Gerente'),
+    (4, 'Senior Engineer', 'Ingeniero Senior'),
+    (5, 'Senior Staff', 'Personal Senior'),
+    (6, 'Staff', 'Personal'),
+    (7, 'Technique Leader', 'Líder Técnico');
+GO
+-- ========================================
+-- 19. Crear nueva tabla puestos_normalizada
+-- ========================================
+CREATE TABLE puestos_normalizada
+(
+    id_emp INT NOT NULL,
+    id_puesto SMALLINT NOT NULL,
+    fecha_desde DATE NOT NULL,
+    fecha_hasta DATE NULL,
+    PRIMARY KEY (id_emp, id_puesto, fecha_desde),
+    FOREIGN KEY (id_emp) REFERENCES empleados(id_emp),
+    FOREIGN KEY (id_puesto) REFERENCES puesto_descr(id_puesto)
+);
+GO
+-- ========================================
+-- 20. Insertar datos desde puestos a puestos_normalizada
+-- ========================================
+INSERT INTO puestos_normalizada
+    (id_emp, id_puesto, fecha_desde, fecha_hasta)
+SELECT
+    p.id_emp,
+    d.id_puesto,
+    p.fecha_desde,
+    p.fecha_hasta
+FROM puestos p
+    JOIN puesto_descr d ON p.puesto = d.descripcion_en;
+GO
+-- ========================================
+-- 21. Eliminar tabla antigua y renombrar
+-- ========================================
+DROP TABLE puestos;
+GO
+
+EXEC sp_rename 'puestos_normalizada', 'puestos';
+GO
