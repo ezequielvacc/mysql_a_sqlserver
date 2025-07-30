@@ -2,7 +2,8 @@
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
 ![status](https://img.shields.io/badge/status-completo-brightgreen)
-![license](https://img.shields.io/badge/license-MIT-yellow)
+![license](https://img.shields.io/badge/build-NSBV-brightgreen?style=plastic&label=License
+)
 
 ---
 
@@ -29,6 +30,7 @@ O
 si tiene git instalado 
 ```bash
 git clone https://github.com/ezequielvacc/mysql_a_sqlserver.git
+```
 > [!TIP]
 > Podés mover la carpeta `datos` al disco `C:` manualmente o utilizando comandos desde la terminal (CMD).
 > Comando para CMD 
@@ -50,6 +52,7 @@ if exist "%ORIGEN%" (
 )
 
 pause
+```
 ---
 > Manual
 **Instrucciones para preparar los archivos CSV:**
