@@ -2,7 +2,8 @@
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
 ![status](https://img.shields.io/badge/status-completo-brightgreen)
-![license](https://img.shields.io/badge/license-MIT-yellow)
+![license](https://img.shields.io/badge/build-NSBV-brightgreen?style=plastic&label=License
+)
 
 ---
 
