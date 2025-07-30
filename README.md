@@ -15,7 +15,7 @@
 
 
 > [!IMPORTANT]
-> El script `1-create.sql` busca archivos en `C:\datos\`.  
+> El script `Puntos-1-al-4.sql` busca archivos en `C:\datos\`.  
 > Si no está correctamente ubicada, el script fallará al ejecutarse.
 
 ---
